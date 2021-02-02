@@ -13,7 +13,7 @@ services:
 
   influxdb:
     image: influxdb:1.8-alpine
-    env_file: configuration.env
+    env_file: .env
     ports:
       - '127.0.0.1:8086:8086'
     volumes:
@@ -24,12 +24,12 @@ services:
     image: grafana/grafana:7.2.1
     depends_on:
       - influxdb
-    env_file: configuration.env
-    user: "$UID:$GID"
+    env_file: .env
+    user: "472:472"
     links:
       - influxdb
     ports:
-      - '127.0.0.1:3000:3000'
+      - '${GRAFANA_PORT}:3000'
     volumes:
       - ./grafana_data:/var/lib/grafana
       - ./grafana/provisioning/:/etc/grafana/provisioning/
