@@ -1,2 +1,4 @@
 grafana_data
 influxdb_data
+.env
+telegraf/etc/telegraf.conf
