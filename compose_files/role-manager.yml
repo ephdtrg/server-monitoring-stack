@@ -13,7 +13,7 @@ services:
 
   influxdb:
     image: influxdb:1.8-alpine
-    env_file: .env
+    env_file: ../.env
     ports:
       - '8086:8086'
     volumes:
@@ -24,7 +24,7 @@ services:
     image: grafana/grafana:7.2.1
     depends_on:
       - influxdb
-    env_file: .env
+    env_file: ../.env
     user: "472:472"
     links:
       - influxdb
